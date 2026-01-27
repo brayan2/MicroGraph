@@ -27,7 +27,7 @@ const seedData = async () => {
                     create: {
                         authorName: "Brian Master",
                         authorSlug: "master-brian",
-                        authorAbout: "Founder of Micro-Store.",
+                        authorAbout: "Founder of MicroGraph.",
                         caseDescription: { children: [{ type: "paragraph", children: [{ text: "Expert in minimalist design." }] }] }
                     },
                     update: { authorName: "Brian Master" }
@@ -103,7 +103,7 @@ const seedData = async () => {
                         },
                         sections: {
                             create: [
-                                { Cta: { ctaTxt: "Welcome to Micro-Store", buttonLabel: "Shop Now", buttonLink: { create: { url: "${getUrl('/collection')}", openNewTab: false } } } },
+                                { Cta: { ctaTxt: "Welcome to MicroGraph", buttonLabel: "Shop Now", buttonLink: { create: { url: "${getUrl('/collection')}", openNewTab: false } } } },
                                 { ProductGrid: { heading: "Featured Products" } },
                                 { Cta: { ctaTxt: "Ready to get started?", buttonLabel: "Browse Collection", buttonLink: { create: { url: "${getUrl('/collection')}", openNewTab: false } } } }
                             ]

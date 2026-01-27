@@ -55,7 +55,7 @@ export const HomePage: React.FC = () => {
           {/* Hero Section */}
           <section className="hero-section">
             <div className="hero-content">
-              <h1 className="hero-title">Welcome to Micro-Store</h1>
+              <h1 className="hero-title">Welcome to MicroGraph</h1>
               <p className="hero-subtitle">
                 Discover amazing products powered by Hygraph CMS
               </p>

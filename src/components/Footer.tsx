@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Micro-Store</h3>
+          <h3>MicroGraph</h3>
           <p>Powered by Hygraph CMS</p>
         </div>
         <div className="footer-section">
@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Micro-Store. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} MicroGraph. All rights reserved.</p>
       </div>
     </footer>
   );

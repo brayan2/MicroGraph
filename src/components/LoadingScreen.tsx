@@ -6,7 +6,7 @@ export const LoadingScreen: React.FC<{ isExiting?: boolean }> = ({ isExiting }) 
         <div className={`loading-screen ${isExiting ? 'exit' : ''}`}>
             <div className="loading-content">
                 <div className="loading-logo">
-                    Micro-Store
+                    MicroGraph
                 </div>
                 <div className="loading-bar-container">
                     <div className="loading-bar"></div>

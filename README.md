@@ -1,6 +1,6 @@
-# Micro-Store
+# MicroGraph
 
-This project is a Micro-Store application.
+This project is a MicroGraph application.
 
 ## Deployment
 
