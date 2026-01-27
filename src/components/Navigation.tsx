@@ -44,7 +44,7 @@ export const Navigation: React.FC = () => {
   const getTo = (target: any) => {
     if (!target) return "/";
     if (target.__typename === 'LandingPage') {
-      return target.lpSlug === 'home-v3' ? '/' : `/${target.lpSlug}`;
+      return target.lpSlug === 'home' ? '/' : `/${target.lpSlug}`;
     }
     if (target.__typename === 'Product') return `/product/${target.productSlug}`;
     if (target.__typename === 'BlogPost') return `/blog/${target.blogSlug}`;

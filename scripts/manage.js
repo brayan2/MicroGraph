@@ -91,11 +91,11 @@ const seedData = async () => {
     const lpRes = await graphqlRequest(`
         mutation {
             upsertLandingPage(
-                where: { pageSlug: "home-v3" }
+                where: { pageSlug: "home" }
                 upsert: {
                     create: {
                         title: "Home",
-                        pageSlug: "home-v3",
+                        pageSlug: "",
                         seoV2: {
                             create: [
                                 { ctaTxt: "Minimalist Life", buttonLabel: "Join", buttonLink: { create: { url: "${getUrl('/join')}", openNewTab: false } } }

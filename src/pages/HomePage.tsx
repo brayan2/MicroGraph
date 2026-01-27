@@ -23,7 +23,7 @@ export const HomePage: React.FC = () => {
       try {
         const [products, lp] = await Promise.all([
           fetchFeaturedProducts(6),
-          fetchLandingPage('home-v3')
+          fetchLandingPage('home')
         ]);
         if (!cancelled) {
           const personalizedProducts = products.map(p => applyPersonalization(p, selectedSegment?.id));
