@@ -1,0 +1,54 @@
+.rich-text {
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.rich-text p {
+    margin-bottom: 1.5rem;
+}
+
+.rich-text-image {
+    margin: 2.5rem 0;
+    text-align: center;
+}
+
+.rich-text-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.rich-text-image .image-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.rich-text ul,
+.rich-text ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.rich-text li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.rich-text h1,
+.rich-text h2,
+.rich-text h3 {
+    color: var(--text-primary);
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+.rich-text-embed {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

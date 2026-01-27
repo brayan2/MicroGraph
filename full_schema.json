@@ -1,0 +1,3069 @@
+{
+  "BlogAuthor": {
+    "name": "BlogAuthor",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "caseDescription",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "RichText",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "authorName",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "authorSlug",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "authorAbout",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "authorImage",
+        "type": {
+          "name": "Asset",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "blogPost",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "BlogPost": {
+    "name": "BlogPost",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "title",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "blogSlug",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "excerpt",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "body",
+        "type": {
+          "name": "BlogPostBodyRichText",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "blogTime",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "testPicker",
+        "type": {
+          "name": "Json",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "seo",
+        "type": {
+          "name": "Seo",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "feturedImage",
+        "type": {
+          "name": "Asset",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "blogAuthor",
+        "type": {
+          "name": "BlogAuthor",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "variants",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "workflowStep",
+        "type": {
+          "name": "Workflow",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "LandingPage": {
+    "name": "LandingPage",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "title",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "pageSlug",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "seo",
+        "type": {
+          "name": "Seo",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "seoV2",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "modularTest",
+        "type": {
+          "name": "LandingPagemodularTestUnion",
+          "kind": "UNION",
+          "ofType": null
+        }
+      },
+      {
+        "name": "sections",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "Navigation": {
+    "name": "Navigation",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "title",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "navItmes",
+        "type": {
+          "name": "NavItem",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "Product": {
+    "name": "Product",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "title",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "productSlug",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "productSku",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shortDescription",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "productDescription",
+        "type": {
+          "name": "ProductProductDescriptionRichText",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shuffle",
+        "type": {
+          "name": "Boolean",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shuffleTestWord",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "productPrice",
+        "type": {
+          "name": "ProductPrice",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "productAttributes",
+        "type": {
+          "name": "ProductAttributes",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "relatedProducts",
+        "type": {
+          "name": "RelatedProduct",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "productVariants",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "gallery",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "productCategory",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "productSeller",
+        "type": {
+          "name": "ProductSeller",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "productStatus",
+        "type": {
+          "name": "ProductStatus",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "remoteRating",
+        "type": {
+          "name": "FakeStoreApi_FakeStoreProduct",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "variants",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "workflowStep",
+        "type": {
+          "name": "Workflow",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ProductCategory": {
+    "name": "ProductCategory",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "categoryName",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "categorySlug",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "categoryDescription",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "categoryImage",
+        "type": {
+          "name": "Asset",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "product",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "childrenCategories",
+        "type": {
+          "name": "ProductCategory",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "parentCategory",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ProductReviews": {
+    "name": "ProductReviews",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "heading",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "rating",
+        "type": {
+          "name": "Float",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "summary",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "author",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "exactOfferMap",
+        "type": {
+          "name": "Json",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ProductSeller": {
+    "name": "ProductSeller",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "sellerName",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "sellerSlug",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "aboutSeller",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "sellerImage",
+        "type": {
+          "name": "Asset",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "product",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "Segment": {
+    "name": "Segment",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "documentInStages",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "description",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "name",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "publishedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "publishedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdBy",
+        "type": {
+          "name": "User",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "scheduledIn",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "BlogTeasersSection": {
+    "name": "BlogTeasersSection",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "heading",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "blogPost",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ClothesVariants": {
+    "name": "ClothesVariants",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "label",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "clothesSize",
+        "type": {
+          "name": "ClothesSize",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "clothesColor",
+        "type": {
+          "name": "ProductColor",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "variantGallery",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "Cta": {
+    "name": "Cta",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "ctaTxt",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "buttonLabel",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "buttonLink",
+        "type": {
+          "name": "Link",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "ctaNested",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "HeroSection": {
+    "name": "HeroSection",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "headline",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "subHeading",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "cta",
+        "type": {
+          "name": "Cta",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "heroBackground",
+        "type": {
+          "name": "Asset",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "Link": {
+    "name": "Link",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "url",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "openNewTab",
+        "type": {
+          "name": "Boolean",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "NavItem": {
+    "name": "NavItem",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "label",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "mulitpleLinks",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "target",
+        "type": {
+          "name": "navItemTarget",
+          "kind": "UNION",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ProductAttributes": {
+    "name": "ProductAttributes",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "attributeKey",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ProductPrice": {
+    "name": "ProductPrice",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "price",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ProductGrid": {
+    "name": "ProductGrid",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "heading",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "products",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "RelatedProduct": {
+    "name": "RelatedProduct",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "similarProducs",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "product",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "RemoteReviewsSection": {
+    "name": "RemoteReviewsSection",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "heading",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "product",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "SampleComponent": {
+    "name": "SampleComponent",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "Seo": {
+    "name": "Seo",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "title",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "description",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  },
+  "ShoesVariant": {
+    "name": "ShoesVariant",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "stage",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Stage",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "locale",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Locale",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "localizations",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "id",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "label",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shoesSize",
+        "type": {
+          "name": "ShoesSize",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shoesColor",
+        "type": {
+          "name": "ProductColor",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      {
+        "name": "variantGallery",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL"
+            }
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "inputFields": []
+  }
+}

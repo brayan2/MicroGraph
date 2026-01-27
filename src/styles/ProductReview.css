@@ -1,0 +1,36 @@
+.product-reviews-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.review-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.review-author {
+    font-weight: 600;
+}
+
+.review-rating {
+    color: #ffc107;
+}
+
+.review-comment {
+    font-style: italic;
+    color: #555;
+}
+
+.add-review-demo {
+    margin-top: 20px;
+    text-align: center;
+}

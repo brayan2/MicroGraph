@@ -1,0 +1,30 @@
+.persona-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: white;
+}
+
+.persona-dropdown {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.persona-hint {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+    .persona-selector {
+        display: none;
+    }
+}
