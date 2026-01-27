@@ -30,6 +30,8 @@ const getButtonCtaUrl = (button: import('../lib/hygraphClient').ButtonCta) => {
             return `/${(target as any).bpSlug}`;
         case 'CollectionPage':
             return `/${(target as any).cpSlug}`;
+        case 'PersonalisationPage':
+            return `/${(target as any).pageSlug}`;
         default:
             return '#';
     }

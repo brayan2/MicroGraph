@@ -23,7 +23,7 @@ export type ButtonCta = {
   __typename: 'ButtonCta';
   id: string;
   buttonLabel: string;
-  buttonTarget?: LandingPage | Product | BlogPageData | CollectionPageData | null;
+  buttonTarget?: LandingPage | Product | BlogPageData | CollectionPageData | PersonalisationPage | null;
 };
 
 export type Cta = {
@@ -215,6 +215,7 @@ export type CollectionPageData = {
 };
 
 export type PersonalisationPage = {
+  __typename: 'PersonalisationPage';
   id: string;
   title: string;
   subtitle?: string | null;
@@ -984,6 +985,7 @@ export async function fetchLandingPage(slug: string = 'home'): Promise<LandingPa
                   ... on Product { productSlug }
                   ... on BlogPage { bpSlug: pageSlug }
                   ... on CollectionPage { cpSlug: pageSlug }
+                  ... on PersonalisationPage { pageSlug }
                 }
               }
             }
