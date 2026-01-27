@@ -6,7 +6,7 @@ This project is a MicroGraph application.
 
 You can deploy this project to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrayan2%2FMicro-Store)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrayan2%2FMicroGraph)
 
 ## Getting Started
 

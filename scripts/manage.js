@@ -2,7 +2,7 @@
 const { graphqlRequest } = require('./config');
 
 const unique = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
-const getUrl = (path) => `https://micro-store.demo${path}?uid=${unique()}`;
+const getUrl = (path) => `https://MicroGraph.demo${path}?uid=${unique()}`;
 
 /**
  * Seed the database with master content

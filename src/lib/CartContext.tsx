@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product } from '../lib/hygraphClient';
+import { Product } from './hygraphClient';
 
 type CartItem = {
     product: Product;
