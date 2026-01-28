@@ -360,6 +360,17 @@ export const ProductPage: React.FC = () => {
         <ProductReview
           reviews={[...(product.reviews || []), ...(product.externalReviews || [])]}
           productId={product.id}
+          title={(() => {
+            // Localized fallbacks
+            const fallbacks: Record<string, string> = {
+              en: 'Customer Reviews',
+              de: 'Kundenbewertungen',
+              fr: 'Avis Clients',
+              es: 'Reseñas de Clientes'
+            };
+            return fallbacks[locale] || fallbacks.en;
+          })()}
+          titleEntryId={product.id}
         />
       </section>
 
@@ -372,7 +383,24 @@ export const ProductPage: React.FC = () => {
             {...createPreviewAttributes({ entryId: product.id, fieldApiId: 'relatedProducts' })}
           >
             <hr className="section-divider" />
-            <h2>Related Products</h2>
+            <h2
+              {...createPreviewAttributes({
+                entryId: product.id,
+                fieldApiId: 'similarProducs',
+                componentChain: [{ fieldApiId: 'similarProducs' }]
+              })}
+            >
+              {product.relatedProducts.similarProducs || (() => {
+                // Localized fallbacks for related products title
+                const fallbacks: Record<string, string> = {
+                  en: 'Related Products',
+                  de: 'Ähnliche Produkte',
+                  fr: 'Produits Connexes',
+                  es: 'Productos Relacionados'
+                };
+                return fallbacks[locale] || fallbacks.en;
+              })()}
+            </h2>
             <div className="related-products-grid">
               {product.relatedProducts.product.map(rp => (
                 <LocalizedLink

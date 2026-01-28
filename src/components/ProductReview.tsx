@@ -1,16 +1,34 @@
 import React from 'react';
 import { Review } from '../lib/hygraphClient';
+import { createPreviewAttributes } from '../lib/hygraphPreview';
 import '../styles/ProductReview.css';
 
 interface ProductReviewProps {
     reviews: Review[];
     productId: string;
+    title?: string;
+    titleEntryId?: string;
+    titleFieldApiId?: string;
 }
 
-export const ProductReview: React.FC<ProductReviewProps> = ({ reviews, productId }) => {
+export const ProductReview: React.FC<ProductReviewProps> = ({
+    reviews,
+    productId,
+    title = 'Customer Reviews',
+    titleEntryId,
+    titleFieldApiId = 'reviewsSectionTitle'
+}) => {
     return (
         <div className="product-reviews-section">
-            <h3>Customer Reviews</h3>
+            <h3
+                {...(titleEntryId ? createPreviewAttributes({
+                    entryId: titleEntryId,
+                    fieldApiId: titleFieldApiId,
+                    componentChain: [{ fieldApiId: 'heading' }]
+                }) : {})}
+            >
+                {title}
+            </h3>
             {reviews.length === 0 ? (
                 <p className="no-reviews">No reviews yet. Be the first to review!</p>
             ) : (

@@ -115,6 +115,7 @@ export type Product = {
   }>;
   productVariants?: Array<ClothesVariants | ShoesVariant> | null;
   relatedProducts?: {
+    similarProducs?: string | null;
     product: Product[];
   } | null;
   shuffle?: boolean | null;
@@ -937,6 +938,7 @@ export async function fetchProductWithVariants(slug: string, segmentName?: strin
           }
         }
         relatedProducts {
+          similarProducs
           product {
             id
             title
