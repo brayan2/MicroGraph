@@ -18,7 +18,10 @@ export const ProductReview: React.FC<ProductReviewProps> = ({ reviews, productId
                     {reviews.map((review) => (
                         <div key={review.id} className="review-item">
                             <div className="review-header">
-                                <span className="review-author">{review.name}</span>
+                                <span className="review-author">
+                                    {review.name}
+                                    {review.id.startsWith('rem-') && <span className="remote-badge">Verified System Review</span>}
+                                </span>
                                 <span className="review-rating">
                                     {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
                                 </span>

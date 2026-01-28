@@ -118,6 +118,7 @@ export type Product = {
     product: Product[];
   } | null;
   shuffle?: boolean | null;
+  externalReviews?: Review[] | null;
   taxonomies?: Taxonomy[] | null;
 };
 
@@ -942,6 +943,12 @@ export async function fetchProductWithVariants(slug: string, segmentName?: strin
               altText
             }
           }
+        }
+        externalReviews {
+          id
+          name
+          rating
+          comment
         }
       }
       productTaxonomies(where: { productSlug: $slug }) {

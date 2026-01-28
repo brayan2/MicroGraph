@@ -356,7 +356,10 @@ export const ProductPage: React.FC = () => {
       </div>
 
       {/* Reviews */}
-      <ProductReview reviews={product.reviews || []} productId={product.id} />
+      <ProductReview
+        reviews={[...(product.reviews || []), ...(product.externalReviews || [])]}
+        productId={product.id}
+      />
 
       {/* Related Products */}
       {
