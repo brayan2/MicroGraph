@@ -376,15 +376,19 @@ export async function graphqlRequest<T>(
       console.error("Variables:", JSON.stringify(variables));
       console.error("Full Errors:", JSON.stringify(json.errors, null, 2));
 
-      const isSchemaError = json.errors.some((err: any) =>
+      // Check if it's strictly a remote field error or schema error
+      const isRecoverable = json.errors.some((err: any) =>
+        err.message?.includes('error fetching remote field') ||
         err.message?.includes('Unknown field') ||
         err.message?.includes('Cannot query field') ||
         err.message?.includes('Unknown type')
       );
 
-      if (isSchemaError) {
-        return null;
+      if (isRecoverable && json.data) {
+        console.warn("Recoverable GraphQL error found, returning partial data.");
+        return json.data as T;
       }
+
       throw new Error("Hygraph GraphQL error");
     }
 

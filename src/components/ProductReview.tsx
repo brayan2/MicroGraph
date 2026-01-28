@@ -12,7 +12,7 @@ export const ProductReview: React.FC<ProductReviewProps> = ({ reviews, productId
         <div className="product-reviews-section">
             <h3>Customer Reviews</h3>
             {reviews.length === 0 ? (
-                <p>No reviews yet. Be the first to review!</p>
+                <p className="no-reviews">No reviews yet. Be the first to review!</p>
             ) : (
                 <div className="reviews-list">
                     {reviews.map((review) => (
