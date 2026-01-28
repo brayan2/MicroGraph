@@ -38,7 +38,7 @@ export const CollectionPage: React.FC = () => {
         const [productsData, categoriesData, taxonomiesData, cmsPageData] = await Promise.all([
           fetchProducts(),
           fetchCategories(),
-          fetchTaxonomyNodes(),
+          fetchTaxonomyNodes('product'),
           fetchCollectionPageData(locale)
         ]);
         if (!cancelled) {

@@ -1256,27 +1256,31 @@ export async function fetchProductsByCategory(categorySlug: string, excludeId?: 
   return products.slice(0, 3);
 }
 
-export async function fetchTaxonomyNodes(): Promise<Taxonomy[]> {
-  // Aggregate from products and blog posts as a reliable way to get all USED tags
+export async function fetchTaxonomyNodes(type: 'product' | 'blog' | 'all' = 'all'): Promise<Taxonomy[]> {
+  // Aggregate from products or blog posts based on type
   const query = /* GraphQL */ `
     query GetAllTaxonomies {
+      ${type === 'blog' || type === 'all' ? `
       blogPosts(first: 100) {
         taxonomies {
           value
         }
       }
+      ` : ''}
+      ${type === 'product' || type === 'all' ? `
       productTaxonomies(first: 100) {
         taxonomies {
           value
         }
       }
+      ` : ''}
     }
   `;
 
   try {
     const data = await graphqlRequest<{
-      blogPosts: { taxonomies: { value: string }[] }[],
-      productTaxonomies: { taxonomies: { value: string }[] }[]
+      blogPosts?: { taxonomies: { value: string }[] }[],
+      productTaxonomies?: { taxonomies: { value: string }[] }[]
     }>(query);
 
     const values = new Set<string>();

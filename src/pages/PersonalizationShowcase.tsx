@@ -185,7 +185,7 @@ export const PersonalizationShowcase: React.FC = () => {
                                         />
                                     </div>
 
-                                    <div className="card-content">
+                                    <div className="card-content-persona">
                                         <h3
                                             className="card-title"
                                             {...createPreviewAttributes({ entryId: editId, fieldApiId: 'title' })}
