@@ -39,7 +39,31 @@ export const Navigation: React.FC = () => {
     }
   }, [cmsNav?.logo?.url]);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    // 1. Remove trailing slashes for consistency
+    const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
+
+    // 2. Get current path without locale
+    // location.pathname is like "/en/blog" or "/en"
+    // We want to match against "path" which is like "/blog" or "/"
+
+    // Check if location.pathname starts with the locale prefix we expect
+    const localePrefix = `/${locale}`;
+    let currentPath = location.pathname;
+
+    if (currentPath.startsWith(localePrefix)) {
+      currentPath = currentPath.slice(localePrefix.length);
+      // Ensure specific case for root after stripping
+      if (currentPath === '') currentPath = '/';
+    }
+
+    // 3. Exact match for home, partial for others
+    if (cleanPath === '/') {
+      return currentPath === '/';
+    }
+
+    return currentPath.startsWith(cleanPath);
+  };
 
   const getTo = (target: any) => {
     if (!target) return "/";
