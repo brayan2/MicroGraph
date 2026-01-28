@@ -42,13 +42,36 @@
     margin-bottom: 1rem;
 }
 
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reviewer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    object-fit: cover;
+    background-color: var(--bg-body);
+}
+
 .review-author {
     font-weight: 600;
     color: var(--text-primary);
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    flex-direction: column;
+    /* Stack name and badge if needed */
+    gap: 0.25rem;
     font-size: 1.1rem;
+}
+
+/* Adjust remote badge positioning */
+.review-author .remote-badge {
+    align-self: flex-start;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
 }
 
 .remote-badge {
@@ -61,6 +84,7 @@
     border: 1px solid rgba(37, 99, 235, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: inline-block;
 }
 
 .review-rating {
@@ -75,7 +99,12 @@
     line-height: 1.6;
     margin: 0;
     font-style: normal;
+    padding-left: 0;
+    /* aligned with avatar now? Maybe aligned with text? */
 }
+
+/* Align comment with text if desired (optional) */
+/* .review-comment { margin-left: calc(48px + 1rem); } */
 
 .no-reviews {
     text-align: center;

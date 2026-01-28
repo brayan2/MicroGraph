@@ -36,10 +36,22 @@ export const ProductReview: React.FC<ProductReviewProps> = ({
                     {reviews.map((review) => (
                         <div key={review.id} className="review-item">
                             <div className="review-header">
-                                <span className="review-author">
-                                    {review.name}
-                                    {review.id.startsWith('rem-') && <span className="remote-badge">Verified System Review</span>}
-                                </span>
+                                <div className="reviewer-info">
+                                    {review.avatarUrl && (
+                                        <img
+                                            src={review.avatarUrl}
+                                            alt={`${review.name}'s profile`}
+                                            className="reviewer-avatar"
+                                            onError={(e) => {
+                                                (e.target as HTMLImageElement).style.display = 'none';
+                                            }}
+                                        />
+                                    )}
+                                    <span className="review-author">
+                                        {review.name}
+                                        {review.id.startsWith('rem-') && <span className="remote-badge">Verified System Review</span>}
+                                    </span>
+                                </div>
                                 <span className="review-rating">
                                     {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
                                 </span>

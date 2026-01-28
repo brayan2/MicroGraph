@@ -60,6 +60,7 @@ export type Category = {
 export type Review = {
   id: string;
   name: string;
+  avatarUrl?: string;
   rating: number;
   comment?: string | null;
 };
