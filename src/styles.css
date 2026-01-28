@@ -74,7 +74,7 @@ body {
 
 .app-main {
   flex: 1;
-  padding-top: calc(var(--nav-height) + 2rem);
+  padding-top: calc(var(--nav-height));
   width: 100%;
 }
 

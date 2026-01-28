@@ -16,6 +16,7 @@ import { LoadingProvider } from "./lib/LoadingContext";
 import { LocalizationProvider, useLocalization, isValidLocale } from "./lib/LocalizationContext";
 
 import { PreviewProvider } from "./lib/PreviewContext";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 const LocaleWrapper: React.FC = () => {
   const { lang } = useParams<{ lang: string }>();
@@ -46,6 +47,7 @@ const LocaleWrapper: React.FC = () => {
 
 export const App: React.FC = () => (
   <Router>
+    <ScrollToTop />
     <LoadingProvider>
       <LocalizationProvider>
         <PersonalizationProvider>
