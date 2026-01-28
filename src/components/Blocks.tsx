@@ -212,33 +212,38 @@ export const BlogTeasers: React.FC<{ data: BlogTeasersType; entryId: string }> =
                 )}
                 <div className="blog-grid">
                     {blogPosts.map((post) => (
-                        <LocalizedLink
+                        <div
                             key={post.id}
-                            to={`/blog/${post.blogSlug}`}
                             className="blog-card"
                             {...createPreviewAttributes({ entryId: post.id, modelApiId: 'BlogPost' })}
                         >
                             {post.feturedImage && (
-                                <div className="blog-image-wrapper">
-                                    <img src={post.feturedImage.url} alt={post.title || 'Blog post'} loading="lazy" />
-                                </div>
+                                <LocalizedLink to={`/blog/${post.blogSlug}`} style={{ display: 'block', textDecoration: 'none' }}>
+                                    <div className="blog-image-wrapper">
+                                        <img src={post.feturedImage.url} alt={post.title || 'Blog post'} loading="lazy" />
+                                    </div>
+                                </LocalizedLink>
                             )}
                             <div className="blog-content">
-                                <h2 {...createPreviewAttributes({ entryId: post.id, modelApiId: 'BlogPost', fieldApiId: 'title' })}>{post.title}</h2>
+                                <LocalizedLink to={`/blog/${post.blogSlug}`} style={{ display: 'block', textDecoration: 'none' }}>
+                                    <h2 {...createPreviewAttributes({ entryId: post.id, modelApiId: 'BlogPost', fieldApiId: 'title' })}>{post.title}</h2>
+                                </LocalizedLink>
                                 <p className="blog-excerpt" {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'excerpt' })}>{post.excerpt}</p>
                                 {post.taxonomies && post.taxonomies.length > 0 && (
                                     <div className="blog-card-taxonomies">
                                         {post.taxonomies.map((t, i) => (
-                                            <TaxonomyBadge key={t.value || i} label={t.displayName} value={t.value} clickable={false} />
+                                            <TaxonomyBadge key={t.value || i} label={t.displayName} value={t.value} clickable={true} />
                                         ))}
                                     </div>
                                 )}
                                 {(post.createdAt) && (
                                     <p className="blog-date">{new Date(post.createdAt).toLocaleDateString()}</p>
                                 )}
-                                <span className="read-more">Read more →</span>
+                                <LocalizedLink to={`/blog/${post.blogSlug}`} style={{ textDecoration: 'none' }}>
+                                    <span className="read-more">Read more →</span>
+                                </LocalizedLink>
                             </div>
-                        </LocalizedLink>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -328,33 +333,38 @@ export const GridSection: React.FC<{ data: import('../lib/hygraphClient').Grid; 
                                 );
                             case 'BlogPost':
                                 return (
-                                    <LocalizedLink
+                                    <div
                                         key={item.id}
-                                        to={`/blog/${item.blogSlug}`}
                                         className="blog-card"
                                         {...createPreviewAttributes({ entryId: item.id, modelApiId: 'BlogPost' })}
                                     >
                                         {item.feturedImage && (
-                                            <div className="blog-image-wrapper">
-                                                <img src={item.feturedImage.url} alt={item.title || 'Blog post'} loading="lazy" />
-                                            </div>
+                                            <LocalizedLink to={`/blog/${item.blogSlug}`} style={{ display: 'block', textDecoration: 'none' }}>
+                                                <div className="blog-image-wrapper">
+                                                    <img src={item.feturedImage.url} alt={item.title || 'Blog post'} loading="lazy" />
+                                                </div>
+                                            </LocalizedLink>
                                         )}
                                         <div className="blog-content">
-                                            <h2 {...createPreviewAttributes({ entryId: item.id, modelApiId: 'BlogPost', fieldApiId: 'title' })}>{item.title}</h2>
+                                            <LocalizedLink to={`/blog/${item.blogSlug}`} style={{ display: 'block', textDecoration: 'none' }}>
+                                                <h2 {...createPreviewAttributes({ entryId: item.id, modelApiId: 'BlogPost', fieldApiId: 'title' })}>{item.title}</h2>
+                                            </LocalizedLink>
                                             <p className="blog-excerpt">{item.excerpt}</p>
                                             {item.taxonomies && item.taxonomies.length > 0 && (
                                                 <div className="blog-card-taxonomies">
                                                     {item.taxonomies.map((tax, i) => (
-                                                        <TaxonomyBadge key={tax.value || i} label={tax.displayName} value={tax.value} clickable={false} />
+                                                        <TaxonomyBadge key={tax.value || i} label={tax.displayName} value={tax.value} clickable={true} />
                                                     ))}
                                                 </div>
                                             )}
                                             {(item.createdAt) && (
                                                 <p className="blog-date">{new Date(item.createdAt).toLocaleDateString()}</p>
                                             )}
-                                            <span className="read-more">Read more →</span>
+                                            <LocalizedLink to={`/blog/${item.blogSlug}`} style={{ textDecoration: 'none' }}>
+                                                <span className="read-more">Read more →</span>
+                                            </LocalizedLink>
                                         </div>
-                                    </LocalizedLink>
+                                    </div>
                                 );
                             case 'BlogAuthor':
                                 return (
