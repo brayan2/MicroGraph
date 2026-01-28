@@ -79,25 +79,28 @@ export const BlogPage: React.FC = () => {
         ) : (
           <div className="blog-grid">
             {posts.map((post) => (
-              <LocalizedLink
+              <div
                 key={post.id}
-                to={`/blog/${post.blogSlug || post.id}`}
                 className="blog-card"
                 {...createPreviewAttributes({ entryId: post.id })}
               >
                 {post.feturedImage && (
-                  <div className="blog-image-wrapper">
-                    <ProductImage
-                      image={post.feturedImage}
-                      alt={post.title || "Blog post image"}
-                      fallbackText={post.title || "Blog post"}
-                      {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'feturedImage' })}
-                    />
-                  </div>
+                  <LocalizedLink to={`/blog/${post.blogSlug || post.id}`} style={{ display: 'block', textDecoration: 'none' }}>
+                    <div className="blog-image-wrapper">
+                      <ProductImage
+                        image={post.feturedImage}
+                        alt={post.title || "Blog post image"}
+                        fallbackText={post.title || "Blog post"}
+                        {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'feturedImage' })}
+                      />
+                    </div>
+                  </LocalizedLink>
                 )}
-                <h2 {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'title' })}>
-                  {post.title || "Untitled Post"}
-                </h2>
+                <LocalizedLink to={`/blog/${post.blogSlug || post.id}`} style={{ display: 'block', textDecoration: 'none' }}>
+                  <h2 {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'title' })}>
+                    {post.title || "Untitled Post"}
+                  </h2>
+                </LocalizedLink>
                 {post.excerpt && (
                   <p
                     className="blog-excerpt"
@@ -109,7 +112,7 @@ export const BlogPage: React.FC = () => {
                 {post.taxonomies && post.taxonomies.length > 0 && (
                   <div className="blog-card-taxonomies">
                     {post.taxonomies.map((tax, i) => (
-                      <TaxonomyBadge key={tax.value || i} label={tax.displayName} value={tax.value} clickable={false} />
+                      <TaxonomyBadge key={tax.value || i} label={tax.displayName} value={tax.value} clickable={true} />
                     ))}
                   </div>
                 )}
@@ -125,8 +128,10 @@ export const BlogPage: React.FC = () => {
                     })}
                   </p>
                 )}
-                <span className="read-more">Read more →</span>
-              </LocalizedLink>
+                <LocalizedLink to={`/blog/${post.blogSlug || post.id}`} style={{ textDecoration: 'none' }}>
+                  <span className="read-more">Read more →</span>
+                </LocalizedLink>
+              </div>
             ))}
           </div>
         )}
