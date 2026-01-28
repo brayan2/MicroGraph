@@ -6,7 +6,7 @@ import { Search } from "./Search";
 import { CartDrawer } from "./CartDrawer";
 import { LocalizedLink } from "./LocalizedLink";
 import { useCart } from "../lib/CartContext";
-import { fetchNavigation, Navigation as NavType } from "../lib/hygraphClient";
+import { fetchNavigation, Navigation as NavType, getTaxonomyDisplayName } from "../lib/hygraphClient";
 import "./Navigation.css";
 
 import { createPreviewAttributes } from "../lib/hygraphPreview";
@@ -79,9 +79,96 @@ export const Navigation: React.FC = () => {
     return "/";
   };
 
+  const renderMegaMenu = (subNav: any) => {
+    const posts = (subNav.target || []).filter((i: any) => i.__typename === 'BlogPost');
+
+    if (posts.length === 0) return <div className="mega-menu-empty">No blog posts found.</div>;
+
+    const taxonomyMap = new Map<string, { value: string, display: string, posts: any[] }>();
+    posts.forEach((post: any) => {
+      if (post.taxonomies && post.taxonomies.length > 0) {
+        const tax = post.taxonomies[0];
+        const taxValue = tax.value;
+        if (!taxonomyMap.has(taxValue)) {
+          taxonomyMap.set(taxValue, {
+            value: taxValue,
+            display: tax.displayName || getTaxonomyDisplayName(taxValue),
+            posts: []
+          });
+        }
+        taxonomyMap.get(taxValue)?.posts.push(post);
+      }
+    });
+
+    const taxonomies = Array.from(taxonomyMap.values()).slice(0, 3);
+
+    return (
+      <div className="mega-menu-content">
+        {taxonomies.map((tax, idx) => (
+          <div key={idx} className="mega-menu-column">
+            <LocalizedLink to={`/taxonomy/${tax.value}`} className="mega-menu-heading-link">
+              <h4 className="mega-menu-heading">{tax.display}</h4>
+            </LocalizedLink>
+            <div className="mega-menu-posts">
+              {tax.posts.slice(0, 2).map((post: any) => (
+                <LocalizedLink key={post.id} to={`/blog/${post.blogSlug}`} className="mega-menu-post">
+                  {post.feturedImage && (
+                    <div className="mega-menu-image-wrapper">
+                      <img src={post.feturedImage.url} alt={post.title} className="mega-menu-image" />
+                    </div>
+                  )}
+                  <span className="mega-menu-post-title">{post.title}</span>
+                </LocalizedLink>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   const renderNavItem = (item: any, navigationId: string) => {
     const to = getTo(item.target);
-    const hasSubNavs = item.subNavs && item.subNavs.length > 0;
+    const manualSubNavsRaw = item.subNavs || [];
+
+    // Detect Mega Menu (SubNav2)
+    const megaMenuSubNav = manualSubNavsRaw.find((sub: any) =>
+      sub.__typename === 'SubNav2' ||
+      (sub.target && Array.isArray(sub.target) && sub.target.some((i: any) => i.__typename === 'BlogPost'))
+    );
+    const isMegaMenu = !!megaMenuSubNav;
+
+    // Normalize manual items
+    const manualItems = manualSubNavsRaw.map((sub: any) => {
+      const target = sub.subNavItems;
+      let children: any[] = [];
+      if (target?.__typename === 'ProductCategory' && target.childrenCategories) {
+        children = (Array.isArray(target.childrenCategories) ? target.childrenCategories : [target.childrenCategories]).filter(Boolean);
+      }
+      return {
+        id: sub.id,
+        label: sub.subLabel,
+        target: target,
+        blogPost: sub.target,
+        childrenCategories: children,
+        source: 'manual'
+      };
+    });
+
+    // Purely dynamic categories
+    let dynamicItems: any[] = [];
+    if (item.target?.__typename === 'ProductCategory' && item.target.childrenCategories) {
+      dynamicItems = (Array.isArray(item.target.childrenCategories) ? item.target.childrenCategories : [item.target.childrenCategories]).filter(Boolean).map((cat: any) => ({
+        id: cat.id || cat.categorySlug,
+        label: cat.categoryName,
+        target: { __typename: 'ProductCategory', categorySlug: cat.categorySlug, childrenCategories: cat.childrenCategories },
+        childrenCategories: cat.childrenCategories ? (Array.isArray(cat.childrenCategories) ? cat.childrenCategories : [cat.childrenCategories]) : [],
+        source: 'dynamic'
+      }));
+    }
+
+    const allSubItems = [...manualItems, ...dynamicItems];
+    const hasDropdown = allSubItems.length > 0;
 
     const previewAttrs = isClickToEditEnabled ? createPreviewAttributes({
       entryId: navigationId,
@@ -93,41 +180,75 @@ export const Navigation: React.FC = () => {
     }) : {};
 
     return (
-      <li key={item.id} className={`nav-item ${hasSubNavs ? 'has-dropdown' : ''}`}>
+      <li key={item.id || item.label} className={`nav-item ${hasDropdown || isMegaMenu ? 'has-dropdown' : ''} ${isMegaMenu ? 'mega-menu-parent' : ''}`}>
         <LocalizedLink
           to={to}
           className={isActive(to) ? "nav-link active" : "nav-link"}
           {...previewAttrs}
         >
           {item.label}
-          {hasSubNavs && <span className="dropdown-caret">▼</span>}
         </LocalizedLink>
-        {hasSubNavs && (
-          <ul className="dropdown-menu">
-            {item.subNavs.map((sub: any) => {
-              const subTo = getTo(sub.subNavItems);
-              const subPreviewAttrs = isClickToEditEnabled ? createPreviewAttributes({
-                entryId: navigationId,
-                modelApiId: 'Navigation',
-                fieldApiId: 'subLabel',
-                componentChain: [
-                  { fieldApiId: 'navItems', instanceId: item.id },
-                  { fieldApiId: 'subNavs', instanceId: sub.id }
-                ]
-              }) : {};
+        {(hasDropdown || isMegaMenu) && (
+          <div className={`dropdown-menu ${isMegaMenu ? 'mega-menu-dropdown' : ''}`}>
+            {isMegaMenu ? renderMegaMenu(megaMenuSubNav) : (
+              <ul className="standard-dropdown">
+                {allSubItems.map((subItem: any) => (
+                  <RecursiveDropdownItem
+                    key={subItem.id || subItem.label}
+                    item={subItem}
+                    navigationId={navigationId}
+                    isManual={subItem.source === 'manual'}
+                    parentCmsId={item.id}
+                  />
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </li>
+    );
+  };
 
-              return (
-                <li key={sub.id}>
-                  <LocalizedLink
-                    to={subTo}
-                    className="dropdown-link"
-                    {...subPreviewAttrs}
-                  >
-                    {sub.subLabel}
-                  </LocalizedLink>
-                </li>
-              );
-            })}
+  const RecursiveDropdownItem = ({ item, navigationId, isManual, parentCmsId }: { item: any, navigationId: string, isManual?: boolean, parentCmsId?: string }) => {
+    const to = getTo(item.target);
+    const rawChildren = item.childrenCategories || [];
+    const normalizedChildren = rawChildren.map((cat: any) => ({
+      id: cat.id || cat.categorySlug,
+      label: cat.categoryName,
+      target: { __typename: 'ProductCategory', categorySlug: cat.categorySlug, childrenCategories: cat.childrenCategories },
+      childrenCategories: cat.childrenCategories ? (Array.isArray(cat.childrenCategories) ? cat.childrenCategories : [cat.childrenCategories]) : [],
+      source: 'dynamic'
+    }));
+
+    const hasChildren = normalizedChildren.length > 0;
+
+    let itemPreviewAttrs = {};
+    if (isManual && isClickToEditEnabled && parentCmsId) {
+      itemPreviewAttrs = createPreviewAttributes({
+        entryId: navigationId,
+        modelApiId: 'Navigation',
+        fieldApiId: 'subLabel',
+        componentChain: [
+          { fieldApiId: 'navItems', instanceId: parentCmsId },
+          { fieldApiId: 'subNavs', instanceId: item.id }
+        ]
+      });
+    }
+
+    return (
+      <li className={`nav-item ${hasChildren ? 'has-dropdown' : ''}`}>
+        <LocalizedLink to={to} className="dropdown-link" {...itemPreviewAttrs}>
+          {item.label}
+        </LocalizedLink>
+        {hasChildren && (
+          <ul className="dropdown-menu">
+            {normalizedChildren.map((child: any) => (
+              <RecursiveDropdownItem
+                key={child.id || child.label}
+                item={child}
+                navigationId={navigationId}
+              />
+            ))}
           </ul>
         )}
       </li>

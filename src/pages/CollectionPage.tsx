@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { LocalizedLink } from "../components/LocalizedLink";
 import { fetchProducts, type Product, fetchCategories, type Category, fetchTaxonomyNodes, type Taxonomy, fetchCollectionPageData, type CollectionPageData } from "../lib/hygraphClient";
 import { ProductImage } from "../components/ProductImage";
@@ -11,6 +11,9 @@ import "../styles/CollectionPage.css";
 import { createPreviewAttributes } from "../lib/hygraphPreview";
 
 export const CollectionPage: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [taxonomies, setTaxonomies] = useState<Taxonomy[]>([]);
@@ -25,6 +28,9 @@ export const CollectionPage: React.FC = () => {
 
   useEffect(() => {
     let cancelled = false;
+
+    // Scroll to top on mount or category change
+    window.scrollTo(0, 0);
 
     const load = async () => {
       setIsLoading(true);
@@ -57,7 +63,7 @@ export const CollectionPage: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, [locale]);
+  }, [locale, categoryParam]);
 
   const filteredProducts = products
     .filter((p) => {
@@ -65,7 +71,10 @@ export const CollectionPage: React.FC = () => {
       const matchesTaxonomy = selectedTaxonomy === "all" || p.taxonomies?.some(t => t.value === selectedTaxonomy);
       const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.shortDescription?.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesStatus && matchesSearch && matchesTaxonomy;
+
+      const matchesCategory = !categoryParam || (p.productCategory && p.productCategory.some((c: any) => c.categorySlug === categoryParam));
+
+      return matchesStatus && matchesSearch && matchesTaxonomy && matchesCategory;
     })
     .sort((a, b) => {
       const getPrice = (p: Product) => {
@@ -82,7 +91,22 @@ export const CollectionPage: React.FC = () => {
     { value: "outofstock", label: "Out of Stock" },
   ];
 
-  // Global loader handles the loading screen
+  // Helper to clear category selection
+  const clearCategory = () => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("category");
+    setSearchParams(params);
+  };
+
+  const handleCategoryClick = (slug: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (categoryParam === slug) {
+      params.delete("category");
+    } else {
+      params.set("category", slug);
+    }
+    setSearchParams(params);
+  };
 
   return (
     <div className="collection-page fade-in">
@@ -156,22 +180,6 @@ export const CollectionPage: React.FC = () => {
                   </label>
                 ))}
               </div>
-            </div>
-          )}
-
-          {categories.length > 0 && (
-            <div className="category-filters">
-              <h3>Categories</h3>
-              {categories.map(cat => (
-                <div key={cat.id} className="parent-category-group" {...createPreviewAttributes({ entryId: cat.id })}>
-                  <div className="parent-category-name" {...createPreviewAttributes({ entryId: cat.id, fieldApiId: 'categoryName' })}>{cat.categoryName}</div>
-                  {cat.childrenCategories && (
-                    <div className="sub-category-list" {...createPreviewAttributes({ entryId: cat.childrenCategories.id })}>
-                      <div key={cat.childrenCategories.id} className="sub-category-item" {...createPreviewAttributes({ entryId: cat.childrenCategories.id, fieldApiId: 'categoryName' })}>— {cat.childrenCategories.categoryName}</div>
-                    </div>
-                  )}
-                </div>
-              ))}
             </div>
           )}
         </aside>

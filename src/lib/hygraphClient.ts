@@ -75,7 +75,7 @@ export type Taxonomy = {
  * Helper to transform native TaxonomyNode value (apiId) to a human-readable name.
  * e.g., "BestSeller" -> "Best Seller"
  */
-function getTaxonomyDisplayName(value: string | undefined | null): string {
+export function getTaxonomyDisplayName(value: string | undefined | null): string {
   if (!value) return "";
   // Split by capital letters and join with spaces
   return value.replace(/([A-Z])/g, " $1").trim();
@@ -178,8 +178,9 @@ export type Link = {
 
 export type SubNav = {
   id: string;
-  subLabel: string;
-  subNavItems: Array<LandingPage | Product | BlogPost | BlogPageData | CollectionPageData | Category> | null;
+  subLabel?: string | null;
+  subNavItems?: Array<LandingPage | Product | BlogPost | BlogPageData | CollectionPageData | Category> | null;
+  target?: BlogPost[] | null; // Added for SubNav2 support
 };
 
 export type NavItem = {
@@ -409,6 +410,9 @@ export async function fetchProducts(): Promise<Product[]> {
         productStatus
         productSku
         productPrice { price }
+        productCategory {
+           categorySlug
+        }
         gallery {
           id
           url
@@ -452,7 +456,8 @@ export async function fetchProducts(): Promise<Product[]> {
 
   return products.map(p => ({
     ...p,
-    taxonomies: taxonomyMap.get(p.productSlug || p.id) || []
+    taxonomies: taxonomyMap.get(p.productSlug || p.id) || [],
+    productCategory: p.productCategory || null
   }));
 }
 
@@ -1115,7 +1120,7 @@ export async function fetchLandingPage(slug: string = 'home'): Promise<LandingPa
 
 export async function fetchNavigation(locale: string = 'en'): Promise<Navigation | null> {
   const query = /* GraphQL */ `
-    query GetNavigation($locale: [Locale!]!) {
+    query GetNavigationV4($locale: [Locale!]!) {
       navigations(first: 1) {
         id
         title
@@ -1136,10 +1141,21 @@ export async function fetchNavigation(locale: string = 'en'): Promise<Navigation
               ... on BlogPage { bpSlug: pageSlug }
               ... on CollectionPage { cpSlug: pageSlug }
               ... on PersonalisationPage { pageSlug }
-              ... on ProductCategory { categorySlug }
+              ... on ProductCategory {
+                categorySlug
+                childrenCategories {
+                  categoryName
+                  categorySlug
+                  childrenCategories {
+                    categoryName
+                    categorySlug
+                  }
+                }
+              }
             }
             subNavs(locales: $locale) {
-              ... on SubNav {
+              __typename
+              ... on SubNav1 {
                 id
                 subLabel
                 subNavItems(locales: $locale) {
@@ -1149,7 +1165,41 @@ export async function fetchNavigation(locale: string = 'en'): Promise<Navigation
                   ... on BlogPage { bpSlug: pageSlug }
                   ... on CollectionPage { cpSlug: pageSlug }
                   ... on PersonalisationPage { pageSlug }
-                  ... on ProductCategory { categorySlug }
+                  ... on ProductCategory {
+                    categorySlug
+                    childrenCategories {
+                      categoryName
+                      categorySlug
+                      childrenCategories {
+                        categoryName
+                        categorySlug
+                        childrenCategories {
+                            categoryName
+                            categorySlug
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ... on SubNav2 {
+                id
+                target {
+                  __typename
+                  ... on BlogPost {
+                    id
+                    title
+                    blogSlug
+                    createdAt
+                    feturedImage {
+                      url
+                      width
+                      height
+                    }
+                    taxonomies {
+                      value
+                    }
+                  }
                 }
               }
             }
@@ -1159,7 +1209,29 @@ export async function fetchNavigation(locale: string = 'en'): Promise<Navigation
     }
   `;
   const data = await graphqlRequest<{ navigations: Navigation[] }>(query, { locale: [locale] });
-  return data?.navigations[0] || null;
+  const navigation = data?.navigations[0] || null;
+
+  // Post-process to add display names to blog post taxonomies in Mega Menu (SubNav2)
+  if (navigation?.navItems) {
+    navigation.navItems.forEach(item => {
+      if (item.subNavs) {
+        item.subNavs.forEach(sub => {
+          if ('target' in sub && Array.isArray(sub.target)) {
+            sub.target.forEach((post: any) => {
+              if (post.__typename === 'BlogPost' && post.taxonomies) {
+                post.taxonomies = post.taxonomies.map((t: any) => ({
+                  ...t,
+                  displayName: getTaxonomyDisplayName(t.value)
+                }));
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
+  return navigation;
 }
 
 export async function fetchProductsByCategory(categorySlug: string, excludeId?: string): Promise<Product[]> {
