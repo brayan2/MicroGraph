@@ -948,7 +948,7 @@ export async function fetchProductWithVariants(slug: string, segmentName?: strin
             }
           }
         }
-        externalReviews(input: { productId: id }) {
+        externalReviews(ProductInput: { productId: id }) {
           id
           name
           rating
