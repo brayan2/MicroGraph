@@ -275,14 +275,17 @@ export const Navigation: React.FC = () => {
             {cmsNav?.title}
           </LocalizedLink>
 
-          <button
-            onClick={toggleClickToEdit}
-            className={`preview-toggle-btn ${isClickToEditEnabled ? 'active' : ''}`}
-            aria-label={isClickToEditEnabled ? 'Disable Click to Edit' : 'Enable Click to Edit'}
-            title={isClickToEditEnabled ? 'Disable Click to Edit' : 'Enable Click to Edit'}
-          >
-            {isClickToEditEnabled ? '✏️ On' : '✏️ Off'}
-          </button>
+          <div className="preview-toggle-wrapper">
+            <button
+              onClick={toggleClickToEdit}
+              className={`preview-toggle-btn ${isClickToEditEnabled ? 'active' : ''}`}
+            >
+              {isClickToEditEnabled ? '✏️ On' : '✏️ Off'}
+            </button>
+            <span className="preview-tooltip">
+              {isClickToEditEnabled ? 'Disable' : 'Enable'} Click To Edit Mode
+            </span>
+          </div>
 
           <div className="locale-switcher">
             <select

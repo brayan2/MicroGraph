@@ -25,17 +25,46 @@ export const ProductPage: React.FC = () => {
   const { addToCart } = useCart();
   const { selectedSegment } = usePersonalization();
   const { locale } = useLocalization();
+  const [externalReviews, setExternalReviews] = useState<any[]>([]);
+
+  // Fetch reviews client-side to ensure correct locale and avatars
+  React.useEffect(() => {
+    if (!product?.id) return;
+
+    const fetchReviews = async () => {
+      try {
+        // Use production base URL if local to ensure access to API
+        const baseUrl = window.location.hostname === 'localhost'
+          ? 'https://micrograph.vercel.app'
+          : '';
+        const res = await fetch(`${baseUrl}/api/reviews?productId=${product.id}&locale=${locale}`);
+        if (res.ok) {
+          const data = await res.json();
+          setExternalReviews(data);
+        }
+      } catch (e) {
+        console.error("Failed to fetch reviews", e);
+      }
+    };
+
+    fetchReviews();
+  }, [product?.id, locale]);
+
+  /* Loading State */
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   React.useEffect(() => {
     if (!slug) {
       setError("Product slug is required");
       setIsLoading(false);
+      setIsPageLoading(false);
       return;
     }
 
     let cancelled = false;
 
     const load = async () => {
+      // Global loading (optional if we have local)
       setIsLoading(true);
       try {
         const data = await fetchProductWithVariants(slug, selectedSegment?.name);
@@ -72,6 +101,7 @@ export const ProductPage: React.FC = () => {
       } finally {
         if (!cancelled) {
           setIsLoading(false);
+          setIsPageLoading(false);
         }
       }
     };
@@ -89,7 +119,14 @@ export const ProductPage: React.FC = () => {
     }
   };
 
-  // We remove the old local loading check as the global loader handles it
+  if (isPageLoading) {
+    return (
+      <div className="product-page-loading-container">
+        <div className="pp-spinner"></div>
+        <p>Loading Product...</p>
+      </div>
+    );
+  }
 
   if (error || !product) {
     return (
@@ -358,7 +395,12 @@ export const ProductPage: React.FC = () => {
       {/* Reviews Section */}
       <section className="product-reviews-container">
         <ProductReview
-          reviews={[...(product.reviews || []), ...(product.externalReviews || [])]}
+          reviews={(() => {
+            // Prefer client-side fetched reviews if available, otherwise fallback
+            return externalReviews.length > 0
+              ? [...(product.reviews || []), ...externalReviews]
+              : [...(product.reviews || []), ...(product.externalReviews || [])];
+          })()}
           productId={product.id}
           title={(() => {
             // Localized fallbacks

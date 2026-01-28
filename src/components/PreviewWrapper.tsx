@@ -1,7 +1,8 @@
 'use client';
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePreviewContext } from '../lib/PreviewContext';
 
 // Dynamically load the preview component at runtime
 const HygraphPreview = React.lazy(() =>
@@ -13,8 +14,6 @@ const HygraphPreview = React.lazy(() =>
 type PreviewWrapperProps = {
   children: React.ReactNode;
 };
-
-import { usePreviewContext } from '../lib/PreviewContext';
 
 export function PreviewWrapper({ children }: PreviewWrapperProps) {
   const navigate = useNavigate();

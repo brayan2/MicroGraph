@@ -31,6 +31,7 @@ export type Cta = {
   id: string;
   ctaLabel?: string | null;
   ctaSubheading?: string | null;
+  ctaImage?: Asset[] | null;
   buttonDetails: ButtonCta[];
 };
 
@@ -198,6 +199,14 @@ export type Navigation = {
   title: string;
   logo?: Asset | null;
   navItems?: NavItem[] | null;
+};
+
+export type Footer = {
+  id: string;
+  logoSection: Cta[];
+  quickLinks: NavItem[];
+  aboutSection: Cta | null;
+  copyright?: string | null;
 };
 
 export type Seo = {
@@ -993,6 +1002,12 @@ export async function fetchLandingPage(slug: string = 'home'): Promise<LandingPa
             id
             ctaLabel
             ctaSubheading
+            ctaImage {
+              url
+              width
+              height
+              altText
+            }
             buttonDetails {
               ... on ButtonCta {
                 __typename
@@ -1455,4 +1470,90 @@ export async function fetchPersonalisationPageData(locale: string = 'en'): Promi
   `;
   const data = await graphqlRequest<{ personalisationPages: PersonalisationPage[] }>(query, { locales: [locale] });
   return data?.personalisationPages?.[0] ?? null;
+}
+
+export async function fetchFooter(locale: string = 'en'): Promise<Footer | null> {
+  const query = /* GraphQL */ `
+    query GetFooter($locales: [Locale!]!) {
+      footers(first: 1, locales: $locales) {
+        id
+        copyright
+        logoSection {
+             ... on Cta {
+                __typename
+                id
+                ctaLabel
+                ctaSubheading
+                ctaImage { url altText height width }
+                buttonDetails {
+                   ... on ButtonCta {
+                      id
+                      buttonLabel
+                      buttonTarget {
+                        __typename
+                        ... on LandingPage { lpSlug: pageSlug }
+                        ... on Product { productSlug }
+                        ... on CollectionPage { cpSlug: pageSlug }
+                        ... on BlogPage { bpSlug: pageSlug }
+                        ... on PersonalisationPage { pageSlug }
+                      }
+                   }
+                }
+             }
+        }
+        quickLinks {
+             ... on NavItem {
+               id
+               label
+               target {
+                  __typename
+                  ... on LandingPage { lpSlug: pageSlug }
+                  ... on CollectionPage { cpSlug: pageSlug }
+                  ... on BlogPage { bpSlug: pageSlug }
+                  ... on PersonalisationPage { pageSlug }
+               }
+               subNavs {
+                 ... on SubNav1 {
+                    id
+                    subLabel
+                    subNavItems {
+                        __typename
+                        ... on Product { productSlug }
+                        ... on CollectionPage { cpSlug: pageSlug }
+                        ... on BlogPage { bpSlug: pageSlug }
+                        ... on PersonalisationPage { pageSlug }
+                        ... on BlogPost { blogSlug }
+                    }
+                 }
+               }
+             }
+        }
+        aboutSection {
+             ... on Cta {
+                __typename
+                id
+                ctaLabel
+                ctaSubheading
+                ctaImage { url altText }
+                buttonDetails {
+                   ... on ButtonCta {
+                       id
+                       buttonLabel
+                       buttonTarget {
+                        __typename
+                        ... on LandingPage { lpSlug: pageSlug }
+                        ... on Product { productSlug }
+                        ... on CollectionPage { cpSlug: pageSlug }
+                        ... on BlogPage { bpSlug: pageSlug }
+                        ... on PersonalisationPage { pageSlug }
+                       }
+                   }
+                }
+             }
+        }
+      }
+    }
+  `;
+  const data = await graphqlRequest<{ footers: Footer[] }>(query, { locales: [locale] });
+  return data?.footers?.[0] ?? null;
 }

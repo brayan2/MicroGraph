@@ -38,10 +38,64 @@ const getButtonCtaUrl = (button: import('../lib/hygraphClient').ButtonCta) => {
 };
 
 export const CtaSection: React.FC<{ data: CtaType; entryId: string }> = ({ data, entryId }) => {
-    // Basic heuristic: if it has "Welcome" in title, treat as Hero styled
-    const isHero = data.ctaLabel?.toLowerCase().includes('welcome');
+    // Basic heuristic: if it has "Welcome" in title, treat as Hero styled (only if no image provided?)
+    // Actually, user wants split layout for specific CTA. Let's prioritize image presence.
+    const hasImage = data.ctaImage && data.ctaImage.length > 0;
+    const isHero = data.ctaLabel?.toLowerCase().includes('welcome') && !hasImage;
 
     const componentChain = [{ fieldApiId: 'sections', instanceId: data.id }];
+    const image = hasImage ? data.ctaImage![0] : null;
+
+    if (hasImage && image) {
+        return (
+            <section className="cta-section cta-split-layout">
+                <div className="section-container split-container">
+                    <div className="cta-image-col">
+                        <img
+                            {...createPreviewAttributes({ entryId, fieldApiId: 'ctaImage', componentChain })}
+                            src={image.url}
+                            alt={image.altText || data.ctaLabel || 'CTA Image'}
+                            width={image.width || undefined}
+                            height={image.height || undefined}
+                            loading="lazy"
+                        />
+                    </div>
+                    <div className="cta-content-col">
+                        <h2
+                            className="cta-title"
+                            {...createPreviewAttributes({ entryId, modelApiId: 'LandingPage', fieldApiId: 'ctaLabel', componentChain })}
+                        >
+                            {data.ctaLabel}
+                        </h2>
+                        {data.ctaSubheading && (
+                            <p
+                                className="cta-subtitle"
+                                {...createPreviewAttributes({ entryId, fieldApiId: 'ctaSubheading', componentChain })}
+                            >
+                                {data.ctaSubheading}
+                            </p>
+                        )}
+                        <div className="cta-buttons">
+                            {data.buttonDetails?.map((button) => (
+                                <LocalizedLink
+                                    key={button.id}
+                                    to={getButtonCtaUrl(button)}
+                                    className="btn btn-primary btn-large"
+                                    {...createPreviewAttributes({
+                                        entryId,
+                                        fieldApiId: 'buttonLabel',
+                                        componentChain: [...componentChain, { fieldApiId: 'buttonDetails', instanceId: button.id }]
+                                    })}
+                                >
+                                    {button.buttonLabel}
+                                </LocalizedLink>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className={isHero ? "hero-section" : "cta-section"}>
