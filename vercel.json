@@ -1,11 +1,13 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/api/:match*",
+      "destination": "/api/:match*"
     },
     {
-      "source": "/(.*)",
+      "source": "/:match((?!api/|api$|_next/|static/|favicon.ico).*)",
       "destination": "/index.html"
     }
   ]

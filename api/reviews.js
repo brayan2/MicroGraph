@@ -1,12 +1,12 @@
 export default function handler(req, res) {
     // Enable CORS for all requests, including from Hygraph
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+    // Handle preflight requests
     if (req.method === 'OPTIONS') {
-        res.status(204).end();
-        return;
+        return res.status(200).end();
     }
 
     // Localized review pool
@@ -52,15 +52,14 @@ export default function handler(req, res) {
         'product-2': { en: reviewPool.en.slice(5, 10) }
     };
 
-    // Extract productId and locale from query
-    // Hygraph passes {{id}} and {{locale}}
-    const { productId, locale } = req.query;
-    const lang = (locale || 'en').toLowerCase();
-    const activePool = reviewPool[lang] || reviewPool.en;
+    try {
+        // Extract productId and locale from query
+        const { productId, locale } = req.query;
+        const lang = (locale || 'en').toLowerCase();
+        const activePool = reviewPool[lang] || reviewPool.en;
 
-    console.log(`Review request: productId=${productId}, locale=${locale}`);
+        console.log(`Review request: productId=${productId}, locale=${locale}`);
 
-    if (req.method === 'GET') {
         let reviews = reviewsData[productId]?.[lang] || reviewsData[productId]?.en;
 
         if (!reviews) {
@@ -80,9 +79,10 @@ export default function handler(req, res) {
         // ALWAYS return JSON
         res.setHeader('Content-Type', 'application/json');
         return res.status(200).json(reviews);
+    } catch (error) {
+        console.error("API Error:", error);
+        // Fallback to empty array on any error to satisfy GraphQL List type
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).json([]);
     }
-
-    // Return 200 even for other methods to prevent Hygraph 404 errors if it tries weird things
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json({ status: 'API operational', method: req.method });
 }
