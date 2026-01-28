@@ -355,11 +355,13 @@ export const ProductPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Reviews */}
-      <ProductReview
-        reviews={[...(product.reviews || []), ...(product.externalReviews || [])]}
-        productId={product.id}
-      />
+      {/* Reviews Section */}
+      <section className="product-reviews-container">
+        <ProductReview
+          reviews={[...(product.reviews || []), ...(product.externalReviews || [])]}
+          productId={product.id}
+        />
+      </section>
 
       {/* Related Products */}
       {

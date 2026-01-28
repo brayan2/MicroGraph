@@ -403,6 +403,11 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
 }
 
+.product-reviews-container {
+  margin: 4rem 0;
+  width: 100%;
+}
+
 /* Related Products - keep existing styles */
 .related-products-section {
   margin-top: 4rem;
