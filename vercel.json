@@ -1,14 +1,11 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/:match*",
-      "destination": "/api/:match*"
+      "handle": "filesystem"
     },
     {
-      "source": "/:match((?!api/|api$|_next/|static/|favicon.ico).*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
