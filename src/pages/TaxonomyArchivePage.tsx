@@ -7,6 +7,7 @@ import { TaxonomyBadge } from "../components/ui/TaxonomyBadge";
 import { useLoading } from "../lib/LoadingContext";
 import { useLocalization } from "../lib/LocalizationContext";
 import "../styles/TaxonomyArchivePage.css";
+import "../styles/Blocks.css";
 
 import { createPreviewAttributes } from "../lib/hygraphPreview";
 
@@ -67,32 +68,44 @@ export const TaxonomyArchivePage: React.FC = () => {
                                     <h2>Featured Products</h2>
                                     <span className="count">{products.length} Items</span>
                                 </div>
-                                <div className="products-grid">
+                                <div className="featured-grid">
                                     {products.map((p) => (
                                         <LocalizedLink
                                             key={p.id}
                                             to={`/product/${p.productSlug || p.id}`}
-                                            className="product-card"
+                                            className="collection-card"
                                             {...createPreviewAttributes({ entryId: p.id })}
                                         >
-                                            <div className="image-wrapper">
+                                            <div className="collection-image-wrapper">
                                                 <ProductImage
                                                     image={p.gallery?.[0]}
                                                     alt={p.title}
                                                     fallbackText={p.title}
                                                     {...createPreviewAttributes({ entryId: p.id, fieldApiId: 'gallery' })}
                                                 />
+                                                {p.taxonomies && p.taxonomies.length > 0 && (
+                                                    <div className="card-taxonomy-overlay">
+                                                        {p.taxonomies.map((t: any, i: number) => (
+                                                            <TaxonomyBadge key={t.value || i} label={t.displayName} value={t.value} clickable={false} />
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className="card-content">
                                                 <h3 {...createPreviewAttributes({ entryId: p.id, fieldApiId: 'title' })}>{p.title}</h3>
                                                 {p.productPrice && (
                                                     <p
-                                                        className="price"
+                                                        className="card-price"
                                                         {...createPreviewAttributes({ entryId: p.id, fieldApiId: 'productPrice' })}
                                                     >
-                                                        ${p.productPrice.price}
+                                                        {p.productPrice.price}
                                                     </p>
                                                 )}
+                                                <div className="card-meta">
+                                                    <span className={`status-badge status-${p.productStatus?.toLowerCase() || 'unknown'}`}>
+                                                        {p.productStatus || 'Available'}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </LocalizedLink>
                                     ))}
@@ -106,42 +119,58 @@ export const TaxonomyArchivePage: React.FC = () => {
                                     <h2>From the Blog</h2>
                                     <span className="count">{blogPosts.length} Posts</span>
                                 </div>
-                                <div className="blog-posts-list">
+                                <div className="blog-grid">
                                     {blogPosts.map((post) => (
-                                        <LocalizedLink
+                                        <div
                                             key={post.id}
-                                            to={`/blog/${post.blogSlug || post.id}`}
                                             className="blog-card"
                                             {...createPreviewAttributes({ entryId: post.id })}
                                         >
-                                            <div className="blog-card-image">
-                                                <ProductImage
-                                                    image={post.feturedImage}
-                                                    alt={post.title || ""}
-                                                    fallbackText={post.title || ""}
-                                                    {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'feturedImage' })}
-                                                />
-                                            </div>
-                                            <div className="blog-card-info">
-                                                <h3 {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'title' })}>{post.title}</h3>
+                                            {post.feturedImage && (
+                                                <LocalizedLink to={`/blog/${post.blogSlug || post.id}`} style={{ display: 'block', textDecoration: 'none' }}>
+                                                    <div className="blog-image-wrapper">
+                                                        <ProductImage
+                                                            image={post.feturedImage}
+                                                            alt={post.title || ""}
+                                                            fallbackText={post.title || ""}
+                                                            {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'feturedImage' })}
+                                                        />
+                                                    </div>
+                                                </LocalizedLink>
+                                            )}
+                                            <div className="blog-content">
+                                                <LocalizedLink to={`/blog/${post.blogSlug || post.id}`} style={{ display: 'block', textDecoration: 'none' }}>
+                                                    <h3 {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'title' })}>{post.title}</h3>
+                                                </LocalizedLink>
                                                 {post.excerpt && (
                                                     <p
-                                                        className="excerpt"
+                                                        className="blog-excerpt"
                                                         {...createPreviewAttributes({ entryId: post.id, fieldApiId: 'excerpt' })}
                                                     >
                                                         {post.excerpt}
                                                     </p>
                                                 )}
                                                 {post.taxonomies && post.taxonomies.length > 0 && (
-                                                    <div className="card-taxonomies">
+                                                    <div className="blog-card-taxonomies">
                                                         {post.taxonomies.map((tax: any, i: number) => (
-                                                            <TaxonomyBadge key={tax.value || i} label={tax.displayName} value={tax.value} clickable={false} />
+                                                            <TaxonomyBadge key={tax.value || i} label={tax.displayName} value={tax.value} clickable={true} />
                                                         ))}
                                                     </div>
                                                 )}
-                                                <span className="read-more">Read Entry →</span>
+                                                {(post.blogTime || post.createdAt) && (
+                                                    <p className="blog-date">
+                                                        {new Date(post.blogTime || post.createdAt || "").toLocaleDateString("en-US", {
+                                                            year: "numeric",
+                                                            month: "long",
+                                                            day: "numeric"
+                                                        })}
+                                                    </p>
+                                                )}
+                                                <LocalizedLink to={`/blog/${post.blogSlug || post.id}`} style={{ textDecoration: 'none' }}>
+                                                    <span className="read-more">Read Entry →</span>
+                                                </LocalizedLink>
                                             </div>
-                                        </LocalizedLink>
+                                        </div>
                                     ))}
                                 </div>
                             </section>

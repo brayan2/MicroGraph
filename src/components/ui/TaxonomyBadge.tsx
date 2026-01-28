@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LocalizedLink } from '../LocalizedLink';
 import './TaxonomyBadge.css';
 
 type TaxonomyBadgeProps = {
@@ -18,9 +19,9 @@ export const TaxonomyBadge: React.FC<TaxonomyBadgeProps> = ({ label, value, clas
 
     if (value && clickable) {
         return (
-            <Link to={`/taxonomy/${value}`} className="taxonomy-badge-link" onClick={(e) => e.stopPropagation()}>
+            <LocalizedLink to={`/taxonomy/${value}`} className="taxonomy-badge-link" onClick={(e) => e.stopPropagation()}>
                 {content}
-            </Link>
+            </LocalizedLink>
         );
     }
 
