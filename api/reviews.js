@@ -1,15 +1,14 @@
 export default function handler(req, res) {
-    // Enable CORS
+    // Enable CORS for all requests, including from Hygraph
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
     if (req.method === 'OPTIONS') {
         res.status(204).end();
         return;
     }
 
-    // A more extensive pool of reviews to simulate a real database
     const reviewPool = [
         { name: 'Alex Rivera', rating: 5, comment: 'Simply the best! Exceeded all my expectations.' },
         { name: 'Sam Chen', rating: 4, comment: 'Great quality and design. Minor shipping delay but worth the wait.' },
@@ -28,39 +27,38 @@ export default function handler(req, res) {
 
     const reviewsData = {
         'product-1': reviewPool.slice(0, 5),
-        'product-2': reviewPool.slice(5, 10),
-        'cm6f8isre02v707u7d7isvqve': [ // Specific ID from previous demo
-            reviewPool[0],
-            reviewPool[2],
-            reviewPool[4],
-            reviewPool[5],
-            reviewPool[12]
-        ]
+        'product-2': reviewPool.slice(5, 10)
     };
 
-    if (req.method === 'GET') {
-        const { productId } = req.query;
+    // Extract productId from query
+    const { productId } = req.query;
 
-        // Return specific data if found, otherwise return a generated set based on productId
-        // This ensures every product has some reviews for the demo
+    // Log the request for debugging in Vercel Console
+    console.log(`Review request received for productId: ${productId}`);
+
+    if (req.method === 'GET') {
         let reviews = reviewsData[productId];
 
         if (!reviews) {
-            // Generate deterministic but "random" looking reviews for any productId
-            // Use the first letter of productId to pick a starting point
-            const startIdx = productId ? (productId.charCodeAt(0) % reviewPool.length) : 0;
+            // Pick reviews based on productId hash if possible
+            const idValue = productId ? productId.length : 0;
+            const startIdx = idValue % reviewPool.length;
+
             reviews = [
-                { ...reviewPool[startIdx], id: `rem-auto-1-${productId}` },
-                { ...reviewPool[(startIdx + 2) % reviewPool.length], id: `rem-auto-2-${productId}` },
-                { ...reviewPool[(startIdx + 4) % reviewPool.length], id: `rem-auto-3-${productId}` }
+                { ...reviewPool[startIdx], id: `rem-auto-1-${productId || 'none'}` },
+                { ...reviewPool[(startIdx + 2) % reviewPool.length], id: `rem-auto-2-${productId || 'none'}` },
+                { ...reviewPool[(startIdx + 4) % reviewPool.length], id: `rem-auto-3-${productId || 'none'}` }
             ];
         } else {
-            // Add IDs to the static data
             reviews = reviews.map((r, i) => ({ ...r, id: `rem-static-${i}-${productId}` }));
         }
 
-        res.status(200).json(reviews);
-    } else {
-        res.status(404).send('Not Found');
+        // ALWAYS return JSON
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).json(reviews);
     }
+
+    // Default 404 in JSON format
+    res.setHeader('Content-Type', 'application/json');
+    res.status(404).json({ error: 'Not Found', path: req.url });
 }
