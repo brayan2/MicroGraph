@@ -1,4 +1,7 @@
 export default function handler(req, res) {
+    // CRITICAL: Set JSON content-type FIRST before any other operations
+    res.setHeader('Content-Type', 'application/json');
+
     // Enable CORS for all requests, including from Hygraph
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, POST');
@@ -8,6 +11,20 @@ export default function handler(req, res) {
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
+
+    // Log the incoming request for debugging
+    const timestamp = new Date().toISOString();
+    const fullUrl = `${req.url}`;
+    console.log(`[${timestamp}] Reviews API Request:`, {
+        method: req.method,
+        url: fullUrl,
+        query: req.query,
+        headers: {
+            'user-agent': req.headers['user-agent'],
+            'origin': req.headers['origin'],
+            'referer': req.headers['referer']
+        }
+    });
 
     // Localized review pool
     const reviewPool = {
@@ -55,10 +72,17 @@ export default function handler(req, res) {
     try {
         // Extract productId and locale from query
         const { productId, locale } = req.query;
+
+        // Validate productId parameter
+        if (!productId) {
+            console.warn('[Reviews API] No productId provided, returning empty array');
+            return res.status(200).json([]);
+        }
+
         const lang = (locale || 'en').toLowerCase();
         const activePool = reviewPool[lang] || reviewPool.en;
 
-        console.log(`Review request: productId=${productId}, locale=${locale}`);
+        console.log(`[Reviews API] Processing: productId="${productId}", locale="${lang}"`);
 
         let reviews = reviewsData[productId]?.[lang] || reviewsData[productId]?.en;
 
@@ -68,21 +92,24 @@ export default function handler(req, res) {
             const startIdx = idValue % activePool.length;
 
             reviews = [
-                { ...activePool[startIdx], id: `rem-auto-1-${productId || 'none'}` },
-                { ...activePool[(startIdx + 2) % activePool.length], id: `rem-auto-2-${productId || 'none'}` },
-                { ...activePool[(startIdx + 4) % activePool.length], id: `rem-auto-3-${productId || 'none'}` }
+                { ...activePool[startIdx], id: `rem-auto-1-${productId}` },
+                { ...activePool[(startIdx + 2) % activePool.length], id: `rem-auto-2-${productId}` },
+                { ...activePool[(startIdx + 4) % activePool.length], id: `rem-auto-3-${productId}` }
             ];
+
+            console.log(`[Reviews API] Generated ${reviews.length} auto reviews for productId="${productId}"`);
         } else {
             reviews = reviews.map((r, i) => ({ ...r, id: `rem-static-${i}-${productId}` }));
+            console.log(`[Reviews API] Returned ${reviews.length} static reviews for productId="${productId}"`);
         }
 
-        // ALWAYS return JSON
-        res.setHeader('Content-Type', 'application/json');
+        // Return JSON response
         return res.status(200).json(reviews);
     } catch (error) {
-        console.error("API Error:", error);
-        // Fallback to empty array on any error to satisfy GraphQL List type
-        res.setHeader('Content-Type', 'application/json');
+        console.error("[Reviews API] Error processing request:", error);
+        console.error("[Reviews API] Error stack:", error.stack);
+
+        // ALWAYS return valid JSON, even on error
         return res.status(200).json([]);
     }
 }
