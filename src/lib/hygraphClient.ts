@@ -530,6 +530,7 @@ export async function fetchProductBySlug(slug: string): Promise<Product | null> 
     }
   `;
 
+
   const data = await graphqlRequest<{ products: Product[], productTaxonomies: { taxonomies: { value: string }[] }[] }>(query, { slug });
   const product = data?.products?.[0];
   const taxonomies = data?.productTaxonomies?.[0]?.taxonomies.map(t => ({
